@@ -9,9 +9,9 @@ public class DualSens extends DefaultReporter
 
     public Syntax getSyntax() 
     {
-	   int[] right = new int[] { Syntax.TYPE_NUMBER, Syntax.TYPE_LIST, Syntax.TYPE_LIST, Syntax.TYPE_LIST};
+	   int[] right = new int[] { Syntax.NumberType(), Syntax.ListType(), Syntax.ListType(), Syntax.ListType()};
 	   //int ret = Syntax.TYPE_NUMBER;
-	   int ret = Syntax.TYPE_LIST;
+	   int ret = Syntax.ListType();
 	   return Syntax.reporterSyntax( right, ret );
     }
     
