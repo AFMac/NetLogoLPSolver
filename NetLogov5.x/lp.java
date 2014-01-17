@@ -28,7 +28,7 @@ public class lp extends DefaultReporter
 		   String obj = "";
 		   double y = 0;
 		   double varVals = 0;
-		   
+		   //attempt test add via iPad
 		   numVars = args[0].getIntValue();
 		   LPparams.add(args[1].get());
 		   objfn.add(args[2].get());
