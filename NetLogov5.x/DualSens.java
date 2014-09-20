@@ -10,7 +10,6 @@ public class DualSens extends DefaultReporter
     public Syntax getSyntax() 
     {
 	   int[] right = new int[] { Syntax.NumberType(), Syntax.ListType(), Syntax.ListType(), Syntax.ListType()};
-	   //int ret = Syntax.TYPE_NUMBER;
 	   int ret = Syntax.ListType();
 	   return Syntax.reporterSyntax( right, ret );
     }
@@ -43,10 +42,6 @@ public class DualSens extends DefaultReporter
 		   
 		   argX = args[3].get();
 		   LogoList LogListIntFn = LogoList.fromJava((LogoList) argX);
-		   
-		   
-		   
-		   //Iterator it = LPparams.iterator();
 		   Iterator it = LogListLPparams.iterator();
 
 		   /* Move through each sub-list of the passed list
@@ -67,17 +62,14 @@ public class DualSens extends DefaultReporter
 				   y = ((Double)intList.get(i-1));
 				   con += " " + y;
 			   }
-			   
 			   solver.strAddConstraint(con, ((Double)intList.get(i-1)).intValue(),((Double)intList.get(i)));	   
 		   }
 		   //add in objective function
-		   
 		   for(i=1;i<= LogListObjFn.size();i++) {
 		   	   y = ((Double)LogListObjFn.get(i-1));
 			   obj += " " + y;
 			}
 		   solver.strSetObjFn(obj);
-		   
 		   //opportunity to set variables as integer
 		   for(i = 1;i <= LogListIntFn.size() ;i++) {
 			   y = ((Double)LogListIntFn.get(i-1));
@@ -90,42 +82,26 @@ public class DualSens extends DefaultReporter
 				   solver.setInt(i, false);
 			   }
 		   }
-		   
-		   
 		   // reduce verbosity, set as max
 		   solver.setVerbose(3);
 		   solver.setMaxim();
 
 		   // solve the problem
 		   solver.solve();
-		   
-		   //get solution info
-//		   double[] var = solver.getPtrVariables();
-		   
+
 		   //get sensitivity data
 		   int cntr = solver.getNorigRows() + numVars;
 		   double [][] sens = new double [cntr][cntr];
 		   sens = solver.getPtrSensitivityRhs();
 		   
-//		   for (i = 0;i < var.length; i++) {
-//			rtnList.add(var[i]);	
-//		   }
-		   
 		for (i = 0;i < sens[0].length; i++) {
 			rtnList.add(sens[0][i]);
 		}
 		   
-
-		 //  y = solver.getObjective();
 		   solver.deleteLp();
 
 		   LogoList finalRtnList = rtnList.toLogoList();
-		 //  finalRtnList = finalRtnList.fput(y);
-		   
-//		   rtnList.add(y);  //need some way to designate this at the front of the list
-		   
-		   
-//		   return rtnList.toLogoList();
+
 		   return finalRtnList;
 
 	   }	   
