@@ -10,7 +10,6 @@ public class lp extends DefaultReporter
     public Syntax getSyntax() 
     {
 	   int[] right = new int[] { Syntax.NumberType(), Syntax.ListType(), Syntax.ListType(), Syntax.ListType()};
-	   //int ret = Syntax.TYPE_NUMBER;
 	   int ret = Syntax.ListType();
 	   return Syntax.reporterSyntax( right, ret );
     }
@@ -28,12 +27,10 @@ public class lp extends DefaultReporter
 		   String obj = "";
 		   double y = 0;
 		   double varVals = 0;
-		   //attempt test add via iPad
 		   numVars = args[0].getIntValue();
 		   LPparams.add(args[1].get());
 		   objfn.add(args[2].get());
 		   intfn.add(args[3].get());
-
 
 		   Object argX = args[1].get();
 		   LogoList LogListLPparams = LogoList.fromJava((LogoList) argX);
@@ -43,10 +40,6 @@ public class lp extends DefaultReporter
 		   
 		   argX = args[3].get();
 		   LogoList LogListIntFn = LogoList.fromJava((LogoList) argX);
-		   
-		   
-		   
-		   //Iterator it = LPparams.iterator();
 		   Iterator it = LogListLPparams.iterator();
 
 		   /* Move through each sub-list of the passed list
@@ -70,7 +63,6 @@ public class lp extends DefaultReporter
 			   solver.strAddConstraint(con, ((Double)intList.get(i-1)).intValue(),((Double)intList.get(i)));	   
 		   }
 		   //add in objective function
-		   
 		   for(i=1;i<= LogListObjFn.size();i++) {
 		   	   y = ((Double)LogListObjFn.get(i-1));
 			   obj += " " + y;
@@ -90,8 +82,7 @@ public class lp extends DefaultReporter
 				   solver.setInt(i, false);
 			   }
 		   }
-		   
-		   
+
 		   // reduce verbosity, set as max
 		   solver.setVerbose(3);
 		   solver.setMaxim();
@@ -106,17 +97,12 @@ public class lp extends DefaultReporter
 			   rtnList.add(var[i]);
 		   }
 
-//		   y = solver.getObjective();
-//		   y = ((Double)LogListLPparams.get(0));
+		   y = solver.getObjective();
 		   solver.deleteLp();
 
 		   LogoList finalRtnList = rtnList.toLogoList();
 		   finalRtnList = finalRtnList.fput(y);
 		   
-//		   rtnList.add(y);  //need some way to designate this at the front of the list
-		   
-		   
-//		   return rtnList.toLogoList();
 		   return finalRtnList;
 
 	   }	   
