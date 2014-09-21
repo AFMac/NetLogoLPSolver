@@ -1,3 +1,10 @@
+/**
+ * lpmin is a slight modification from class lp and instantiates and solves a minimization problem passed by the user
+ * 
+ * @author AFMac 
+ * @version 2.0
+ */
+
 import lpsolve.*;
 import org.nlogo.api.*;
 import java.util.*;

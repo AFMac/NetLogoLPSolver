@@ -1,3 +1,10 @@
+/**
+ * DualSens calculates and returns sensitivity figures for the duals based on a maximization problem.  Still under development
+ * 
+ * @author AFMac 
+ * @version 0.1
+ */
+
 import lpsolve.*;
 import org.nlogo.api.*;
 import java.util.*;

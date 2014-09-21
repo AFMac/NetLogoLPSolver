@@ -1,3 +1,10 @@
+/**
+ * this class instantiates and solves a maximization problem passed by the user
+ * 
+ * @author AFMac
+ * @version 2.0
+ */
+
 import lpsolve.*;
 import org.nlogo.api.*;
 import java.util.*;
