@@ -35,7 +35,11 @@ public class LPMaximize implements Reporter {
         
 //        String newLibraryPath = System.getProperty("java.library.path");
 //        LPSolverExtension.writeToNetLogo(newLibraryPath, false, context);
-
+//        LPSolverExtension.writeToNetLogo(System.getProperty("os.name").toLowerCase(), false, context);
+//        LPSolverExtension.writeToNetLogo(System.getProperty("os.arch").toLowerCase(), false, context);
+//        LPSolverExtension.writeToNetLogo(System.getProperty("PATH"), false, context);
+//        LPSolverExtension.writeToNetLogo(System.getenv("PATH"), false, context);
+        
         try {
             //specify vars for the passed parameters
             int numVars = 0;
