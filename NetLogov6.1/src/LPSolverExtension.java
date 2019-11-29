@@ -72,11 +72,7 @@ public class LPSolverExtension extends org.nlogo.api.DefaultClassManager {
                         + "contained in the README.md file at the same location.");
             }
         } else if (operatingSystem.contains("mac")) {
-            // No 64-bit library for the macOS.
-            throw new ExtensionException(
-                    "The underlying software on which lpsolver is built "
-                    + "is not compatible with the 64-bit version of "
-                    + "NetLogo for the macOS.");
+            // 64-bit library has been added to distro, however no mac workstation available to test code functionality
         } else {
             /**
              * we assume Linux. Ideally we would like to alter LD_LIBRARY_PATH
