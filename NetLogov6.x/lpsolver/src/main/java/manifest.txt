@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Extension-Name: lpsolver
+Class-Manager: lptest
+NetLogo-Extension-API-Version: 6.0
