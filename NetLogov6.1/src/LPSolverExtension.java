@@ -7,6 +7,8 @@
 package org.nlogo.extensions.lpsolver;
 
 import java.io.File;
+import java.nio.file.*;
+import java.io.IOException;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
 import org.nlogo.api.LogoException;
@@ -72,7 +74,19 @@ public class LPSolverExtension extends org.nlogo.api.DefaultClassManager {
                         + "contained in the README.md file at the same location.");
             }
         } else if (operatingSystem.contains("mac")) {
-            // 64-bit library has been added to distro, however no mac workstation available to test code functionality
+            // the JNI wrapper distributed with the extension needs a symbolic link in the usr/local/lib directory.
+			Path newLink = Paths.get("~/Library/Application Support/NetLogo/6.1/extensions/lpsolver/liblpsolve55.dylib");
+			Path target = Paths.get("/usr/local/lib");
+			
+			// this attempts to create the required symbolic link.  If one already exists, will fail and continue
+			try {
+				Files.createSymbolicLink(newLink, target);
+			} catch (IOException x) {
+				System.err.println(x);
+			} catch (UnsupportedOperationException x) {
+			// Some file systems do not support symbolic links.
+			System.err.println(x);
+			}
         } else {
             /**
              * we assume Linux. Ideally we would like to alter LD_LIBRARY_PATH
