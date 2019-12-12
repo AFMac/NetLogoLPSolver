@@ -75,8 +75,8 @@ public class LPSolverExtension extends org.nlogo.api.DefaultClassManager {
             }
         } else if (operatingSystem.contains("mac")) {
             // the JNI wrapper distributed with the extension needs a symbolic link in the usr/local/lib directory.
-			Path newLink = Paths.get("~/Library/Application Support/NetLogo/6.1/extensions/lpsolver/liblpsolve55.dylib");
-			Path target = Paths.get("/usr/local/lib");
+			Path target = Paths.get("~/Library/Application Support/NetLogo/6.1/extensions/lpsolver/liblpsolve55.dylib");
+			Path newLink = Paths.get("/usr/local/lib");
 			
 			// this attempts to create the required symbolic link.  If one already exists, will fail and continue
 			try {
