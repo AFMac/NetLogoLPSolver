@@ -7,8 +7,12 @@
 package org.nlogo.extensions.lpsolver;
 
 import java.io.File;
+//import java.io.OutputStream;
+//import java.io.PrintStream;
+//import java.io.FileOutputStream;
 import java.nio.file.*;
 import java.io.IOException;
+import org.nlogo.api.FileIO;
 import org.nlogo.api.Context;
 import org.nlogo.api.ExtensionException;
 import org.nlogo.api.LogoException;
@@ -61,8 +65,8 @@ public class LPSolverExtension extends org.nlogo.api.DefaultClassManager {
         }
 
         // now deal with OS specific issues
-        if (operatingSystem.contains("win")) {
-            // the lpsolver installation directory must be in the path.
+		if (operatingSystem.contains("win")) {
+			// the lpsolver installation directory must be in the path.
             String pathEnv = System.getenv("PATH");
             if (!pathEnv.contains("lpsolver")) {
                 throw new ExtensionException(
@@ -75,7 +79,7 @@ public class LPSolverExtension extends org.nlogo.api.DefaultClassManager {
             }
         } else if (operatingSystem.contains("mac")) {
             // the JNI wrapper distributed with the extension needs a symbolic link in the usr/local/lib directory.
-			Path target = Paths.get("~/Library/Application Support/NetLogo/6.1/extensions/lpsolver/liblpsolve55.dylib");
+			Path target = Paths.get(userExtensionDirectory + File.separator + "liblpsolve55.dylib");
 			Path newLink = Paths.get("/usr/local/lib");
 			
 			// this attempts to create the required symbolic link.  If one already exists, will fail and continue
